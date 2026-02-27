@@ -1,0 +1,24 @@
+# https://www.svix.com/guides/sqs/creating-sqs-listener-spring-boot/
+server:
+   port: 8080
+   servlet:
+      context-path: /awssqssns
+cloud:
+   aws:
+      region:
+         static: eu-west-1
+#      credentials:
+#         access-key: YourAWSAccessKey
+#         secret-key: YourAWSSecretKey
+      sqs:
+         queue-name: QUEUE_NAME
+         endpoint: https://sqs.eu-west-1.amazonaws.com/NNN/${cloud.aws.sqs.queue-name}
+# to disable queue listeners, just set "queue-name"" and "endpoint" as empty strings, like:
+#      sqs:
+#         queue-name:
+#         endpoint:
+
+logging:
+   level:
+     root: INFO
+     it.olly: DEBUG
